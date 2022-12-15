@@ -1,6 +1,6 @@
 Ovo je surce code Goggle Chrome extenzije koja služi za čitanje tekstualnih članaka.
 
-Ekstenzija se koristi tako da se ode na bilo koji članak, na internetu, pritisne "Convert" i članak postane spremljen u audio obliku i može se slušati kad god to poželite.
+Ekstenzija se koristi tako da se odete na bilo koji članak na internetu, pritisnete na ikonicu ekstenzije, zatim tipku "Convert" i članak se onda pretvori u audio oblik i postane spreman za slušanje. Audio članak možete ubrzati, usporiti, pauzirati, nastaviti, promjeniti glas itd.
 
 Ekstenziju možete preuzeti:
 
