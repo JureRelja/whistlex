@@ -1,0 +1,24 @@
+body{
+    background-color: #74cae6;
+}
+.main-style{
+    font-size: 40px;
+    color: white;
+    text-align: center;
+    padding-top: 150px;
+}
+.return{
+    display:flex;
+    margin-top: 60px;
+    justify-content: center;
+}
+#paragraph{
+    font-size: 28px;
+    margin-top: 0px;
+    margin-bottom: px;
+}
+
+p {
+    text-align: center;
+    color: #ffffff;
+}

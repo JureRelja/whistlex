@@ -1,0 +1,46 @@
+{
+    "manifest_version": 2,
+    "name": "WhistleX",
+    "version": "1.2.3",
+    "description": "WhistleX is a tool that reads articles for you. Just go on a website (blog, news, education, etc.), press play and enjoy.",
+    "icons": {
+        "16": "./images/logo-16.png",
+        "48": "./images/logo-48.png",
+        "128": "./images/logo-128.png"
+      },
+
+    "permissions": [
+        "tabs",
+        "https://us-central1-whistlex.cloudfunctions.net/WhistleX"
+    ],
+    "content_security_policy": "script-src 'self' https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Array.prototype.includes,CustomEvent,Object.entries,Object.values,URL; object-src 'self'",
+    "content_security_policy": "script-src 'self' https://unpkg.com/plyr@3; object-src 'self'",
+    
+    "browser_action": {
+        "default_popup": "./Html/login.html",
+        "default_icon": "./images/logo.png"
+    },
+
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+
+    "web_accessible_resources": [
+        "https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Array.prototype.includes,CustomEvent,Object.entries,Object.values,URL",
+        "https://unpkg.com/plyr@3",
+        "http://cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js",
+        "https://www.paypal.com/sdk/js?client-id=sb&currency=USD"
+    ],
+    "background": {
+        "scripts": ["background.js"]
+    }
+}
+

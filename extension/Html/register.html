@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!DOCTYPE html>
+  <html lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../css/register.css"></link>
+  <script type="module" src="../script/firebase-scripts/fontawesome.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet/less" type="text/css" href="../Html/less/register.less" /></link>
+  <link rel="stylesheet" href="../css/register.css">
+  <script src="../script/firebase-scripts/firebase-app.js"></script>
+  <script src="../script/firebase-scripts/firebase-auth.js"></script>
+  <script src="../script/firebase-scripts/firebase-firestore.js"></script>
+  <title>Register</title>
+</head>
+  <body>
+    <div class="container">
+      <form id="registerForm">
+        <div class="row">
+          <h4>Account</h4>
+          <p style="color: #c23d3d; font-size: 15px;" id="registerMessage"></p>
+          <div class="input-group input-group-icon">
+            <input type="text" placeholder="Full Name" id="full-name" />
+            <div class="input-icon"><i class="fa fa-user"></i></div>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="email" placeholder="Email Adress" id="email"/>
+            <div class="input-icon"><i class="fa fa-envelope"></i></div>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="password" placeholder="Password" id="password"/>
+            <div class="input-icon"><i class="fa fa-key"></i></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-half"></div>
+          <div class="col-half"></div>
+        </div>
+        <div class="row">
+        <div class="col-half">
+            <div class="input-group">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <h4>Terms and Conditions</h4>
+          <div class="input-group">
+            <input type="checkbox" id="terms"/>
+            <label for="terms" id="boja">I accept the terms and conditions for signing up to this service, and here by confirm I have read the privacy policy.</label>
+          </div>
+        </div>
+        <button class="btn btn-block btn-info ripple-effect" style="width: 100%; margin-left: 50%; transform: translateX(-50%);" id="btn">Create an account</button>
+        <p id="login">Already have an account?<a id="link" href="../Html/login.html">Login</a></p>
+      </form>
+    </div>
+
+    <script src="../script/register.js"></script>
+  </body>
+</html>

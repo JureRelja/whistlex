@@ -1,0 +1,266 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="John Doe">
+    <meta name="description" content="">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title>Pricing - WhistleX</title>
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="images/logo.png">
+    <link rel="shortcut icon" type="image/ico" href="images/logo.png" />
+    <!-- Plugin-CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./css/themify-icons.css">
+    <link rel="stylesheet" href="./css/magnific-popup.css">
+    <link rel="stylesheet" href="./css/animate.css">
+	<!-- Main-Stylesheets -->
+	<link rel="stylesheet" href="./css/pricing.css"></link>
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <!--Firebase scripts-->
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-firestore.js"></script>
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body data-spy="scroll" data-target="#primary-menu" style="background-color: #6FC7E4;">
+
+    <div class="preloader">
+        <div class="sk-folding-cube">
+            <div class="sk-cube1 sk-cube"></div>
+            <div class="sk-cube2 sk-cube"></div>
+            <div class="sk-cube4 sk-cube"></div>
+            <div class="sk-cube3 sk-cube"></div>
+        </div>
+    </div>
+    <!--Mainmenu-area-->
+    <div class="mainmenu-area" data-spy="affix" data-offset-top="100">
+        <div class="container">
+            <!--Logo-->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-menu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="./index.html" class="navbar-brand logo">
+                    <h2>WhistleX</h2>
+                </a>
+            </div>
+            <!--Logo/-->
+            <nav class="collapse navbar-collapse" id="primary-menu">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="./index#home-page">Home</a></li>
+                    <li><a href="#service-page">Service</a></li>
+                    <li><a href="#feature-page">Features</a></li>
+                    <li><a href="#price-page">Pricing</a></li>
+                    <!--<li><a href="#team-page">About us</a></li>-->
+                    <li><a href="#faq-page">FAQ</a></li>
+                    <!--<li><a href="#blog-page">Blog</a></li>-->
+                    <li><a href="#contact-page">Contact</a></li>
+                    <li id="profile-img"><div class="user-menu-wrap"></a><img class="mini-photo"
+						src="./images/profilePic.svg" width="36" height="36" id="profile-photo" />
+				<div id="menu-container">
+					<ul class="user-menu">
+						<li class="user-menu__item"><a class="user-menu-link" href="#">My Profile</a></li>
+						<li class="user-menu__item"><a class="user-menu-link" id="logout" href="#">Sign out</a></li>
+						<li class="user-menu__item"><a class="user-menu-link" href="#">Settings</a></li>
+					</ul>
+				</div>
+			</div></li>
+                </ul>
+            </nav>
+        </div>  
+    </div>
+
+
+
+	<div class="pricing-container" style="margin-top: 200px;">
+		<ul class="pricing-list bounce-invert">
+			<li>
+				<ul class="pricing-wrapper">
+					<li data-type="monthly" class="is-visible">
+						<header class="pricing-header">
+							<h2>Basic</h2>
+							<div class="price">
+								<span class="currency">$</span>
+								<span class="value">9.99</span>
+							</div>
+						</header>
+						<div class="pricing-body">
+							<ul class="pricing-features">
+								<li><em>5</em> Hours of WhisleX speech</li>
+								<li><em></em></li>
+							</ul>
+						</div>
+						<footer class="pricing-footer">
+							<div id="paypal-button-container-basic"></div>
+						</footer>
+					</li>
+				</ul>
+			</li>
+			<li class="exclusive">
+				<ul class="pricing-wrapper">
+					<li data-type="monthly" class="is-visible">
+						<header class="pricing-header">
+							<h2 style="color:#2196F3;">Standard</h2>
+							<div class="price">
+								<span class="currency">$</span>
+								<span class="value">16.99</span>			
+							</div>
+						</header>
+						<div class="pricing-body">
+							<ul class="pricing-features">
+								<li><em>10</em> Hours of WhisleX speech</li>
+								<li><em>3</em> Template Styles</li>
+						</div>
+						<footer class="pricing-footer">
+							<div id="paypal-button-container-standard"></div>
+						</footer>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<ul class="pricing-wrapper">
+					<li data-type="monthly" class="is-visible">
+						<header class="pricing-header">
+							<h2>Pro</h2>
+							<div class="price">
+								<span class="currency">$</span>
+								<span class="value">29.99</span>
+							</div>
+						</header>
+						<div class="pricing-body">
+							<ul class="pricing-features">
+								<li><em>20</em> Hours of WhisleX speech</li>
+								<li><em>5</em> Template Styles</li>
+						</div>
+						<footer class="pricing-footer">
+							<div id="paypal-button-container-pro"></div>
+						</footer>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+
+	<footer class="footer-area relative sky-bg" id="contact-page">
+		<div class="absolute footer-bg"></div>
+		<div class="footer-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
+						<div class="page-title">
+							<h2>Contact
+								<!--with--> us</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit voluptates, temporibus
+								at, facere harum fugiat!</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-md-4">
+						<address class="side-icon-boxes">
+							<div class="side-icon-box">
+								<div class="side-icon">
+									<img src="images/location-arrow.png" alt="">
+								</div>
+								<p><strong>Address: </strong> Box 564, Disneyland <br />USA</p>
+							</div>
+							<div class="side-icon-box">
+								<div class="side-icon">
+									<img src="images/phone-arrow.png" alt="">
+								</div>
+								<p><strong>Telephone: </strong>
+									<a href="callto:8801812726495">+8801812726495</a> <br />
+								</p>
+							</div>
+							<div class="side-icon-box">
+								<div class="side-icon">
+									<img src="images/mail-arrow.png" alt="">
+								</div>
+								<p><strong>E-mail: </strong>
+									<a href="mailto:youremail@example.com">example@mail.com</a> <br />
+								</p>
+							</div>
+						</address>
+					</div>
+					<div class="col-xs-12 col-md-8">
+					<form action="https://formspree.io/jurereljanovic99@gmail.com" method="POST">
+						
+						  <input type="text" id="form-name" name="name" placeholder="Your name" class="form-control"
+								required="required">
+	
+						  <input type="text" id="form-email" name="mail" class="form-control"
+								placeholder="E-mail address" required="required">
+						
+						  <input type="text" id="form-subject" name="subject" class="form-control"
+								placeholder="Message topic">
+						
+							<textarea name="message" id="form-message" name="message" rows="5" class="form-control"
+								placeholder="Your message" required="required"></textarea>
+					   
+						<input type="submit" value="Submit" class="button">
+					  </form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-middle">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 pull-right">
+						<ul class="social-menu text-right x-left">
+							<li><a href="#"><i class="ti-facebook"></i></a></li>
+							<li><a href="#"><i class="ti-twitter"></i></a></li>
+							<li><a href="#"><i class="ti-google"></i></a></li>
+							<li><a href="#"><i class="ti-linkedin"></i></a></li>
+							<li><a href="#"><i class="ti-github"></i></a></li>
+						</ul>
+					</div>
+					<!--<div class="col-xs-12 col-sm-6">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id corrupti architecto
+							consequuntur, laborum quaerat sed nemo temporibus unde, beatae vel.</p>
+					</div>-->
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 text-center">
+						<p>&copy;Copyright 2020 All right reserved.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	  <!--Vendor-JS-->
+	  <script src="js/vendor/jquery-1.12.4.min.js"></script>
+	  <script src="js/vendor/bootstrap.min.js"></script>
+	  <!--Plugin-JS-->
+	  <script src="js/owl.carousel.min.js"></script>
+	  <script src="js/contact-form.js"></script>
+	  <script src="js/jquery.parallax-1.1.3.js"></script>
+	  <script src="js/scrollUp.min.js"></script>
+	  <script src="js/magnific-popup.min.js"></script>
+	  <script src="js/wow.min.js"></script>
+	  <!--Main-active-JS-->
+	  <script src="js/main.js"></script>
+	<!--PayPal payments-->
+	<script src="https://www.paypal.com/sdk/js?client-id=AcOn1hLIPhB8JI9OEncqYZ1sTboaZL6rmxrKUgk--yZQByWcy5HIIU-tFVmlKhN__7hkP8WrEpYU7hlS&currency=USD"></script>
+	<script src="./js/payments.js"></script>
+</body>
+</html>

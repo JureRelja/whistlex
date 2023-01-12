@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>WhistleX</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+	<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Array.prototype.includes,CustomEvent,Object.entries,Object.values,URL"></script>
+	<script src="https://unpkg.com/plyr@3"></script>
+	<link rel="stylesheet" href="https://unpkg.com/plyr@3/dist/plyr.css">
+	<script src="../script/firebase-scripts/firebase-app.js"></script>
+	<script src="../script/firebase-scripts/firebase-auth.js"></script>
+	<script src="../script/firebase-scripts/firebase-firestore.js"></script>
+	<script src="./script/jquery/jqueryorg.js"></script>
+	<script src="./script/jquery/jquerygo.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	<style>
+		html,
+		body {
+			height: 240px;
+			width: 384px;
+			margin: 0;
+		}
+
+		#cijelibox {
+			background-color: #ffffff;
+			height: 100%;
+			width: 100%;
+		}
+
+		#title {
+			height: 20.5%;
+			width: 100%;
+			display: inline-block;
+			border-bottom: 1px solid #DADADA;
+		}
+
+		h1 {
+			font-family: "Roboto";
+			font-size: 30px;
+			font-weight: 400;
+			margin-top: 4%;
+			float: left;
+			color: #01192F;
+			margin-top: 22px;
+			margin-left: 10px;
+			width: 100px;
+		}
+
+		#logo {
+			margin-top: 10px;
+			margin-left: 7%;
+			width: 55px;
+			height: 55px;
+			float: left;
+
+		}
+
+		#on {
+			display: block;
+			width: 45px;
+			margin-top: -13.5%;
+			margin-left: 81.7%;
+		}
+
+		#off {
+			display: none;
+			width: 45px;
+			margin-top: -13.5%;
+			margin-left: 81.7%;
+		}
+
+		#highlighting {
+			width: 100%;
+			height: 64px;
+			border-bottom: 1px solid #DADADA;
+		}
+
+		#word {
+			font-family: Roboto;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 18px;
+			line-height: 21px;
+			color: #4F4F4F;
+			padding-top: 4%;
+			margin-top: 15px;
+			margin-left: 7%;
+		}
+
+		#play {
+			display: none;
+			margin-left: 159.5px;
+			height: 65px;
+			width: 65px;
+			margin-top: 4%;
+			cursor: pointer;
+		}
+
+		#pause {
+			display: none;
+			height: 65px;
+			width: 65px;
+			margin-left: 159.5px;
+			margin-top: 4%;
+			cursor: pointer;
+		}
+
+		#remaining-time {
+			margin-left: 50%;
+			transform: translateX(-50%);
+			width: 47%;
+		}
+
+		#articles {
+			font-family: Roboto;
+			font-style: normal;
+			font-weight: 200;
+			font-size: 12px;
+			line-height: 14px;
+			color: #4F4F4F;
+			margin-top: 20px;
+		}
+
+		#remaining_articles {
+			font-family: "Roboto";
+			font-style: normal;
+			font-weight: light;
+			font-size: 12px;
+			line-height: 14px;
+			color: #4F4F4F;
+			float: right;
+			margin-top: -14px;
+		}
+
+		#premium {
+			height: 38.75%;
+			width: 100%;
+		}
+
+		#upgrade {
+			margin-top: 6%;
+			margin-left: 4%;
+			width: 353px;
+			height: 27px;
+			background-color: #2196F3;
+			border: 1px solid #2196F3;
+			box-sizing: border-box;
+			box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+			border-radius: 15px;
+			text-transform: uppercase;
+			font-family: Roboto;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 12px;
+			line-height: 14px;
+			color: #FFFFFF;
+			text-align: center;
+			padding-top: 5px;
+			margin-bottom: 1
+		}
+
+		a {
+			font-style: normal;
+			font-weight: normal;
+			font-size: 12px;
+			line-height: 14px;
+			color: #FFFFFF;
+			text-decoration: none;
+			font-family: Roboto;
+		}
+
+		a:hover {
+			color: lightblue;
+			text-decoration: none;
+		}
+
+		#loader {
+			border: 4px solid #f3f3f3;
+			/* Light grey */
+			border-top: 4px solid #3498db;
+			/* Blue */
+			border-radius: 50%;
+			width: 29px;
+			height: 29px;
+			animation: spin 2s linear infinite;
+			margin-left: 175px;
+			margin-top: -45px;
+			display: none;
+			position: absolute;
+			z-index: 3;
+		}
+
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		.white {
+			width: 384px;
+			height: 52px;
+			background-color: #fff;
+			opacity: 0.8;
+			position: absolute;
+			margin-top: -52px;
+			z-index: 1;
+			display: block;
+		}
+
+		.audioContainer {
+			
+			max-width: 500px;
+			box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+			border-bottom: 1px solid #DADADA;
+		}
+
+		.plyr__volume {
+			display: none;
+		}
+
+		.plyr__menu {
+			
+		}
+
+		#startBtn {
+			box-sizing: border-box;
+			display: block;
+			width: 46px;
+			height: 46px;
+			padding-top: 18px;
+			padding-left: 4px;
+			line-height: 10px;
+			border-radius: 50%;
+			color: #ffffff;
+			text-align: center;
+			text-decoration: none;
+			background-color: #3498db;
+			font-size: 20px;
+			font-weight: bold;
+			transition: all 0.3s ease;
+			margin-top: -50px;
+			position: absolute;
+			margin-left: 170px;
+			margin-top: -49px;
+			z-index: 4;
+			display: block;
+		}
+
+		#startBtn:hover {
+			background-color: #2384c5;
+			color: #f5f5f5;
+			cursor: pointer;
+		}
+
+		#profilebutton {
+			background-color: white;
+			border: 0px;
+		}
+
+		#profilebutton:hover {
+			background-color: white;
+		}
+
+		#whistlex-title {
+			float: left;
+		}
+
+		#profilepics:hover {
+			opacity: 0.86923124243;
+			cursor: pointer;
+		}
+
+		.btn {
+			font-family: "Roboto", 'Helvetica Neue, Helvetica, Arial', sans-serif;
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 1.1;
+			text-transform: uppercase;
+			letter-spacing: inherit;
+			color: rgba(255, 255, 255, 0.87);
+			width: 345px;
+		}
+
+		.btn-default,
+		.btn-link {
+			color: rgba(0, 0, 0, 0.87);
+		}
+
+		/* -- Buttons style ------------------------------------ */
+		.btn {
+			outline: 0;
+			outline-offset: 0;
+			border: 0;
+			border-radius: 2px;
+			transition: all 0.15s ease-in-out;
+			-o-transition: all 0.15s ease-in-out;
+			-moz-transition: all 0.15s ease-in-out;
+			-webkit-transition: all 0.15s ease-in-out;
+		}
+
+		/* -- Buttons types -------------------------------- */
+
+		/* -- Buttons colors -------------------------------- */
+
+		.btn-info,
+		.dropdown-toggle.btn-info {
+			background-color: #03a9f4;
+		}
+
+		.btn-info:hover,
+		.dropdown-toggle.btn-info:hover {
+			background-color: #03a9f4;
+		}
+
+		/* -- Buttons sizes -------------------------------- */
+		.btn {
+			min-width: 88px;
+			padding: 10px 14px;
+		}
+
+		/*-- Button groups --------------------------------- */
+		.btn-group>.btn:focus:hover,
+		.btn-group-vertical>.btn:focus:hover,
+		.btn-group>.btn:active:hover,
+		.btn-group-vertical>.btn:active:hover,
+		.btn-group>.btn.active:hover,
+		.btn-group-vertical>.btn.active:hover {
+			z-index: 2;
+		}
+
+		.btn {
+			margin-top: 6%;
+			margin-left: 4%;
+			width: 353px;
+			height: 27px;
+			background-color: #2196F3;
+			border: 1px solid #2196F3;
+			box-sizing: border-box;
+			box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+			border-radius: 15px;
+			text-transform: uppercase;
+			font-family: Roboto;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 12px;
+			line-height: 14px;
+			color: #FFFFFF;
+			text-align: center;
+			padding-top: 5px;
+			margin-bottom: 1;
+			cursor: pointer;
+		}
+
+		.btn {
+			text-align: center;
+			font-size: 11.7px;
+		}
+
+		.lista {
+			list-style: none;
+			margin-left: 310px;
+			margin-top: 60px;
+			height: 38px;
+			width: 47px;
+			border: 1px solid;
+			padding: 0px;
+		}
+
+		/*PROFILE------------------------------------------------------------*/
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		ul {
+			list-style: none;
+		}
+
+		.user-menu-wrap {
+			position: relative;
+			width: 36px;
+			margin: 50px auto;
+		}
+
+		.mini-photo-wrapper {
+			display: block;
+		}
+
+		.mini-photo:hover {
+			opacity: 0.8345628176382;
+		}
+
+		.menu-container {
+			visibility: hidden;
+			opacity: 0;
+			padding: 0px;
+			margin: 0px;
+		}
+
+		.menu-container.active {
+			visibility: visible;
+			opacity: 1;
+			-webkit-transition: all .3s ease-in-out;
+			transition: all .3s ease-in-out;
+		}
+
+		.user-menu {
+			position: absolute;
+			right: -22px;
+			background-color: #f7f3f3;
+			width: 120px;
+			border-radius: 6px;
+			border: 1px solid rgba(0, 0, 0, 0.15);
+			padding-top: 5px;
+			padding-bottom: 5px;
+			margin-top: 10px;
+			color: black;
+			z-index: 2;
+		}
+
+		.user-menu .user-menu-link {
+			display: block;
+			text-decoration: none;
+			color: #444;
+			font-size: 14px;
+			padding: 5px 10px;
+		}
+
+		.user-menu .user-menu-link:hover {
+			background-color: #4183c4;
+			color: #fff;
+		}
+
+		.user-menu:before {
+			position: absolute;
+			top: -16px;
+			left: 72px;
+			display: inline-block;
+			content: "";
+			border: 8px solid transparent;
+			border-bottom-color: #ccc;
+			border-bottom-color: rgba(0, 0, 0, 0.15);
+		}
+
+		.user-menu:after {
+			position: absolute;
+			top: -14px;
+			left: 73px;
+			display: inline-block;
+			content: "";
+			border: 7px solid transparent;
+			border-bottom-color: #f7f3f3;
+		}
+
+		.user-menu-wrap {
+			float: right;
+			margin-top: 20px;
+			height: 5px;
+			margin-right: 19px;
+		}
+
+		#menu-container {
+			display: none;
+		}
+
+		@import url(https://fonts.googleapis.com/css?family=Raleway:500);
+
+		#player {
+			width: 69px;
+			height: 12px;
+			position: absolute;
+			top: 0px;
+			margin: 0px;
+			padding: 0px;
+			margin-left: 312px;
+			margin-top: 103px;
+		}
+
+		#player i {
+			position: absolute;
+			color: #666;
+		}
+
+		#player i.fa-volume-down {
+			margin-left: -8px;
+		}
+
+		#player i.fa-volume-up {
+			margin-right: -8px;
+			right: 0;
+		}
+
+		#volume-slider {
+			position: absolute;
+			left: 12px;
+			margin: 0 auto;
+			height: 5px;
+			width: 50px;
+			background: #d6dbe1;
+			border-radius: 15px;
+			
+		}
+
+		#volume-slider .ui-slider-range-min {
+			height: 5px;
+			width: 300px;
+			position: absolute;
+			background: #00B3FF;
+			border: none;
+			border-radius: 10px;
+			outline: none;
+		}
+
+		#volume-slider .ui-slider-handle {
+			width: 15px;
+			height: 15px;
+			border-radius: 20px;
+			background: #ffffff;
+			position: absolute;
+			margin-left: -8px;
+			margin-top: -5px;
+			cursor: pointer;
+			outline: none;
+			border: 0.5px solid #b9babb;
+		}
+
+		.mute-unmute {
+			width: 36px;
+			position: absolute;
+			margin-left: 278px;
+			margin-top: -43px;
+			padding: 6px;
+			fill: #4A5764;
+			transition: 0.3s;
+		}
+
+		.mute-unmute:hover {
+			background-color: #00B3FF;
+			cursor: pointer;
+			fill: #FFFFFF;
+			border-radius: 4px;
+		}
+
+		.audio {
+			width: 75%;
+		}
+		
+		
+		
+	</style>
+
+</head>
+
+<body>
+	<div>
+		<div id="title">
+			<img src="./images/logo.png" id="logo"></img>
+			<div id="whistlex-title">
+				<h1>WhistleX</h1>
+			</div>
+			<div class="user-menu-wrap"><a id="mini-photo-wrapper" href="#"><img class="mini-photo"
+						src="./images/profilePic.svg" width="36" height="36" /></a>
+				<div id="menu-container">
+					<ul class="user-menu">
+						<!--<li class="user-menu__item"><a class="user-menu-link" href="#">My Profile</a></li>-->
+						<li class="user-menu__item"><a class="user-menu-link" id="logout" href="#">Sign out</a></li>
+						<!--<li class="user-menu__item"><a class="user-menu-link" href="#">Settings</a></li>-->
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!--
+		<div id="highlighting">
+			<p id="word">
+				Highlight the spoken word
+			</p>
+			<img src="./images/icons8-toggle-off-80.png" id="off" style="margin-top: -32px;"></img>
+			<img src="./images/icons8-toggle-on-80.png" id="on" style="margin-top: -32px;"></img>
+		</div>-->
+		<div id="premium">
+			<div class="container">
+				<div class="audioContainer">
+					<div class="player-container">
+						<div class="audio">
+							<audio id="audio" src="">
+							</audio>
+						</div>
+						<div id="player">
+							<div id="volume-slider"></div>
+						</div>
+						<div class="audio-slider">
+							<svg id="mute" class="mute-unmute" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							viewBox="0 0 515 480" style="enable-background:new 0 0 480 480;" xml:space="preserve">
+							<path d="M278.944,17.577c-5.568-2.656-12.128-1.952-16.928,1.92L106.368,144.009H32c-17.632,0-32,14.368-32,32v128
+								c0,17.664,14.368,32,32,32h74.368l155.616,124.512c2.912,2.304,6.464,3.488,10.016,3.488c2.368,0,4.736-0.544,6.944-1.6
+								c5.536-2.656,9.056-8.256,9.056-14.4v-416C288,25.865,284.48,20.265,278.944,17.577z"/>
+							<path id="first-line" d="M368.992,126.857c-6.304-6.208-16.416-6.112-22.624,0.128c-6.208,6.304-6.144,16.416,0.128,22.656C370.688,173.513,384,205.609,384,240.009s-13.312,66.496-37.504,90.368c-6.272,6.176-6.336,16.32-0.128,22.624c3.136,3.168,7.264,4.736,11.36,4.736c4.064,0,8.128-1.536,11.264-4.64C399.328,323.241,416,283.049,416,240.009S399.328,156.777,368.992,126.857z"/>
+							<path id="second-line" d="M414.144,81.769c-6.304-6.24-16.416-6.176-22.656,0.096c-6.208,6.272-6.144,16.416,0.096,22.624C427.968,140.553,448,188.681,448,240.009s-20.032,99.424-56.416,135.488c-6.24,6.24-6.304,16.384-0.096,22.656c3.168,3.136,7.264,4.704,11.36,4.704c4.064,0,8.16-1.536,11.296-4.64C456.64,356.137,480,299.945,480,240.009S456.64,123.881,414.144,81.769z"/>
+							<g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+						</div>
+					</div>
+					<div class="white" id="white"></div>
+					<div id="loader"></div>
+					<div id="startBtn" class="fa fa-play fa-2x"></div>
+				</div>
+				<p style="text-align: center; margin-top: 5px; color: rgb(180, 51, 51);" id="fail"></p>
+				<div id="remaining-time">
+					<p id="articles">Time remaining:</p>
+					<p id="remaining_articles" style="font-weight: bold;"></p>
+				</div>
+				<div>
+					<a href="https://whistlex.com/login.html#extension" target="_blank"><button class="btn btn-block btn-info ripple-effect" type="submit" name="Submit"
+							alt="sign in" id="buy">Buy more time for listening to articles</button></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="./script/volume.js"></script>
+	<script type="text/javascript" src="./popup.js"></script>
+	<script src="./popup_auth.js"></script>
+
+</body>
+
+</html>
